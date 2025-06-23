@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <title>Bosh Sahifa</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; margin-top: 40px; }
+    img { width: 80px; border-radius: 50%; }
+    button { margin: 10px; padding: 10px 20px; font-size: 18px; }
+  </style>
+</head>
+<body>
+  <div id="userInfo"></div>
+  <p>Google dino o'yiniga o'xshash o'yin. Reytingda qatnashing!</p>
+  <button onclick="location.href='game.html'">🎮 O'yinni boshlash</button>
+  <button onclick="location.href='leaderboard.html'">📊 Reyting</button>
+  <button onclick="logout()">🚪 Chiqish</button>
+
+  <script>
+    const name = localStorage.getItem("username");
+    const avatar = localStorage.getItem("avatar");
+
+    if (!name || !avatar) location.href = "register.html";
+
+    document.getElementById("userInfo").innerHTML = `
+      <img src="${avatar}" alt="Avatar"><br>
+      <h2>Salom, ${name}!</h2>
+    `;
+
+    function logout() {
+      localStorage.clear();
+      location.href = "register.html";
+    }
+  </script>
+</body>
+</html>
