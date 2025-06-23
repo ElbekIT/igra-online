@@ -5,7 +5,6 @@
   <title>Bosh Sahifa</title>
   <style>
     body { font-family: sans-serif; text-align: center; margin-top: 40px; }
-    img { width: 80px; border-radius: 50%; }
     button { margin: 10px; padding: 10px 20px; font-size: 18px; }
   </style>
 </head>
@@ -18,14 +17,10 @@
 
   <script>
     const name = localStorage.getItem("username");
-    const avatar = localStorage.getItem("avatar");
 
-    if (!name || !avatar) location.href = "register.html";
+    if (!name) location.href = "register.html";
 
-    document.getElementById("userInfo").innerHTML = `
-      <img src="${avatar}" alt="Avatar"><br>
-      <h2>Salom, ${name}!</h2>
-    `;
+    document.getElementById("userInfo").innerHTML = `<h2>Salom, ${name}!</h2>`;
 
     function logout() {
       localStorage.clear();

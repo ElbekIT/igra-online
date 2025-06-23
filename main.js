@@ -1,5 +1,4 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getStorage, ref as sRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
 import { getDatabase, ref, set, update, get, child } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
 const firebaseConfig = {
@@ -15,30 +14,25 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
-const storage = getStorage(app);
 
 window.register = async function() {
   const name = document.getElementById("nameInput").value.trim();
-  const file = document.getElementById("avatarInput").files[0];
-  if (!name) return alert("Ismingizni kiriting!");
-  if (!file) return alert("Avatar tanlang!");
+  const phone = document.getElementById("phoneInput").value.trim();
+  if (!name || !phone) return alert("Ism va telefon raqamingizni kiriting!");
 
   const userId = Date.now();
-  const avatarRef = sRef(storage, `avatars/${userId}-${file.name}`);
-  const snapshot = await uploadBytes(avatarRef, file);
-  const avatarURL = await getDownloadURL(snapshot.ref);
-
   const time = new Date().toLocaleString("uz-UZ");
+
   await set(ref(db, "users/" + userId), {
     name,
-    avatar: avatarURL,
+    phone,
     score: 0,
     time
   });
 
   localStorage.setItem("username", name);
   localStorage.setItem("userId", userId);
-  localStorage.setItem("avatar", avatarURL);
+  localStorage.setItem("phone", phone);
 
   location.href = "index.html";
 }

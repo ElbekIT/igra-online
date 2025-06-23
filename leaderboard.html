@@ -5,8 +5,7 @@
   <title>Reyting</title>
   <style>
     body { font-family: sans-serif; max-width: 600px; margin: auto; padding: 10px; text-align: center; }
-    .player { display: flex; align-items: center; gap: 10px; margin: 10px 0; background: #f0f0f0; padding: 10px; border-radius: 10px; }
-    .player img { width: 50px; height: 50px; border-radius: 50%; }
+    .player { margin: 10px 0; background: #f0f0f0; padding: 10px; border-radius: 10px; }
     .player.gold { background: gold; font-weight: bold; }
   </style>
 </head>
@@ -29,12 +28,9 @@
         const div = document.createElement("div");
         div.className = "player" + (index === 0 ? " gold" : "");
         div.innerHTML = `
-          <img src="${user.avatar}" alt="Avatar">
-          <div>
-            <strong>#${index + 1} - ${user.name}</strong><br>
-            ${user.score} ball<br>
-            <small>${user.time}</small>
-          </div>
+          <strong>#${index + 1} - ${user.name}</strong><br>
+          ${user.score} ball<br>
+          <small>${user.time}</small>
         `;
         list.appendChild(div);
       });
@@ -42,3 +38,4 @@
   </script>
 </body>
 </html>
+
